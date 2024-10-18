@@ -1,30 +1,18 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
+# ClassFlow
 
-Temas:
- - Grafos1
- - Grafos2
- - PD
- - D&C
- - Greed
- - Final 
- 
- **!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: Grafos2_Labirinto-do-Minotauro !!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
-
-**Número da Lista**: X<br>
+**Número da Lista**: Grafos 1<br>
 **Conteúdo da Disciplina**: XXXXXXXXXX<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 22/1022604  |  João Victor da Silva Batista de Farias |
+| 22/1031363  |  Renan Vieira Guedes |
 
 ## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+Este projeto implementa uma interface gráfica que utiliza um **algoritmo de ordenação topológica** para determinar a ordem ideal na qual as disciplinas devem ser concluídas, com base em seus pré-requisitos. O problema resolvido envolve completar uma série de `n` disciplinas, onde a conclusão de uma disciplina pode depender de outras terem sido concluídas primeiro.
+
+O algoritmo prioriza a conclusão da **disciplina 1** o mais rápido possível, seguida pela **disciplina 2**, e assim por diante. Esta solução garante que você possa completar as disciplinas na ordem mais eficiente, respeitando todas as restrições de pré-requisitos.. 
 
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em funcionamento.
