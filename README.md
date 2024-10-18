@@ -1,7 +1,7 @@
 # ClassFlow
 
-**Número da Lista**: Grafos 1<br>
-**Conteúdo da Disciplina**: XXXXXXXXXX<br>
+**Número da Lista**: 1<br>
+**Conteúdo da Disciplina**: Grafos 1<br>
 
 ## Alunos
 |Matrícula | Aluno |
@@ -17,17 +17,13 @@ O algoritmo prioriza a conclusão da **disciplina 1** o mais rápido possível, 
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em funcionamento.
 
-## Instalação 
-**Linguagem**: xxxxxx<br>
+## Instalação
+**Linguagem**: Nushell<br>
 **Framework**: (caso exista)<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 
 ## Uso 
 Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
 
-## Outros 
+## Outros
 Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
-
-
-
-
