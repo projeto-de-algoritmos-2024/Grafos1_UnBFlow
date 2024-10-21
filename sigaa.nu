@@ -24,7 +24,7 @@ def calculate-class [
 # Get initial ID state of the secure forms (so called state).
 #
 # It is for getting form unique validator.
-def get-state []: string -> int {
+export def get-state []: string -> int {
 	$in
 	| parse --regex `id="javax.faces.ViewState" value="j_id(.*?)"`
 	| get capture0.0
@@ -190,13 +190,24 @@ def post [
 	(
 		http post
 		--full
-		--content-type 'application/x-www-form-urlencoded'
-		--redirect-mode="manual"
+		--content-type `application/x-www-form-urlencoded`
+		--redirect-mode='manual'
 		--headers {
 			...$headers
 			Content-Length: $content.length
 		}
-		"https://sigaa.unb.br/sigaa/public/turmas/listar.jsf"
+		'https://sigaa.unb.br/sigaa/public/turmas/listar.jsf'
 		$in.content
 	)
+}
+
+# Get the default page to get new Javax.
+export def request []: string -> int {
+	(
+		http get
+		--full
+		--redirect-mode="manual"
+		--headers ($in | make-headers)
+		"https://sigaa.unb.br/sigaa/public/turmas/listar.jsf"
+	) | sigaa get-state
 }
