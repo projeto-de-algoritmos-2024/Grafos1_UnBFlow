@@ -27,3 +27,12 @@ Explique como usar seu projeto caso haja algum passo a passo após o comando de 
 
 ## Outros
 Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+
+### Como rodar o raspador de dados
+
+1. Instale [Nushell](https://www.nushell.sh/);
+2. Clone o repositório;
+3. Abra um terminal no diretório deste repositório;
+4. `$ nu`;
+5. `$ use sigaa.nu`;
+6. `$ sigaa scrap` (demora cerca de uma hora).
