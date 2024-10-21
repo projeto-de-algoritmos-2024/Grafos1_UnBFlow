@@ -236,6 +236,22 @@ export def get-departments [
 	}
 }
 
+# Scrap all the information and save the file.
+#
+# Take around one hour.
+export def scrap [
+	output = './disciplinas.json' # Output path.
+]: nothing -> nothing {
+	let session = get-session
+
+	let deps = open dados.json
+		| get departments
+
+	open dados.json
+	| get-departments $deps
+	| save $output --force
+}
+
 # Make POST request to Listar.
 def post [
 	bias: int = 3 # How much should it take from the content.
