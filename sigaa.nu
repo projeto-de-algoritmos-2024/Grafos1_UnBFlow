@@ -71,7 +71,7 @@ def get-content-length [
 }
 
 # Get simpler session and state for listing classes.
-export def get-session []: nothing -> record<session: string, state: int, departments: list<string>> {
+export def get-session []: nothing -> record<session: string, state: int, departments: list<int>> {
 	let result = (
 		http get
 		--full
@@ -86,6 +86,7 @@ export def get-session []: nothing -> record<session: string, state: int, depart
 		| parse --regex `value="(.*?)">`
 		| get capture0
 		| skip 1
+		| into int
 		 # ^^ Skip the first option because it's not a department, "SELECIONE".
 
 	let cookie = $result
@@ -184,11 +185,12 @@ export def get-class [
 }
 
 # Get classes of a department.
-export def get-department-classes []: record<session: string, state: int, department: int, classes: list<int>> -> list<record<code: string, name: string, pre: list<record<code: string, name: string>>, co: list<record<code: string, name: string>>, equiv: list<record<code: string, name: string>> >> {
+export def get-department-classes [
+	classes: list<int> # Classes to get info.
+]: record<session: string, state: int, department: int> -> list<record<code: string, name: string, pre: list<record<code: string, name: string>>, co: list<record<code: string, name: string>>, equiv: list<record<code: string, name: string>> >> {
 	let data = $in
-		| reject classes	
 
-	$in.classes | each {|id|
+	$classes | each {|id|
 		let state = $data.session | request
 		let state = {
 			session: $data.session,
@@ -200,6 +202,37 @@ export def get-department-classes []: record<session: string, state: int, depart
 			state: $state
 			department: $data.department
 		} | get-class $id
+	}
+}
+
+# Get departments of all classes
+export def get-departments [
+	departments: list<int> # Departments to get info of classes.
+]: record<session: string, state: int> -> list<record<code: string, name: string, pre: list<record<code: string, name: string>>, co: list<record<code: string, name: string>>, equiv: list<record<code: string, name: string>> >> {
+	let data = $in
+
+	$departments | each {|id|
+		let state = $data.session | request
+
+		let dep_data = { 
+			session: $data.session
+			state: $state
+		} | get-department $id
+
+		let classes = {
+			session: $data.session
+			state: $dep_data.state
+			department: $id
+		} | get-department-classes $dep_data.classes
+
+		let end = {
+			department: $id
+			classes: $classes
+		}
+
+		print $end
+
+		$end
 	}
 }
 
