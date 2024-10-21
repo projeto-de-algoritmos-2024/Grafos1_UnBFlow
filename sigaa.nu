@@ -107,7 +107,7 @@ export def get-session []: nothing -> record<session: string, state: int, depart
 # Get all classes IDs of this department.
 export def get-department [
 	department: int # Department ID from the session.
-]: record<session: string, state: int> -> list<int> {
+]: record<session: string, state: int> -> record<state: int, classes: list<int>> {
 
 	let data = {
 		"formTurma": "formTurma",
@@ -119,13 +119,20 @@ export def get-department [
 		"javax.faces.ViewState": $"j_id($in.state)"
 	}
 
-	{ session: $in.session, content: $data }
-	| post
-	| get body
-	| str replace --all --regex "\r|\n|\t" ``
-	| parse --regex `'id':'(.*?)','publico':'public'`
-	| get capture0
-	| into int
+	let body = { session: $in.session, content: $data }
+		| post
+		| get body
+
+	let classes = $body
+		| str replace --all --regex "\r|\n|\t" ``
+		| parse --regex `'id':'(.*?)','publico':'public'`
+		| get capture0
+		| into int
+	
+	{
+		state: ($body | get-state)
+		classes: $classes
+	}
 }
 
 # Retrieve information into record from class page.
@@ -139,7 +146,7 @@ export def get-class [
 		"formTurma:inputDepto": $in.department,
 		"formTurma:inputAno": "2024",
 		"formTurma:inputPeriodo": "2",
-		"javax.faces.ViewState": $"j_id2"
+		"javax.faces.ViewState": $"j_id($in.state)"
 		"formTurma:aqui": "formTurma:aqui",
 		"id": $class,
 		"publico": "public"
@@ -176,6 +183,26 @@ export def get-class [
 	}
 }
 
+# Get classes of a department.
+export def get-department-classes []: record<session: string, state: int, department: int, classes: list<int>> -> list<record<code: string, name: string, pre: list<record<code: string, name: string>>, co: list<record<code: string, name: string>>, equiv: list<record<code: string, name: string>> >> {
+	let data = $in
+		| reject classes	
+
+	$in.classes | each {|id|
+		let state = $data.session | request
+		let state = {
+			session: $data.session,
+			state: $state
+		} | get-department $data.department | get state
+
+		{
+			session: $data.session
+			state: $state
+			department: $data.department
+		} | get-class $id
+	}
+}
+
 # Make POST request to Listar.
 def post [
 	bias: int = 3 # How much should it take from the content.
@@ -209,5 +236,5 @@ export def request []: string -> int {
 		--redirect-mode="manual"
 		--headers ($in | make-headers)
 		"https://sigaa.unb.br/sigaa/public/turmas/listar.jsf"
-	) | sigaa get-state
+	) | get body | get-state
 }
