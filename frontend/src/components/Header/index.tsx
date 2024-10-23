@@ -1,8 +1,9 @@
 import React from "react";
+import "./style.css";
 
 function Header() {
   return (
-    <header>
+    <header className="header">
       <h1>ClassFlow</h1>
     </header>
   );

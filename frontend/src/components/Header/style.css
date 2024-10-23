@@ -1,0 +1,12 @@
+.header {
+    display: flex;
+    flex-flow: column;
+    width: 100%;    
+    color: white;
+    align-items: center;
+    background-color: #7F7F7FFC;
+}
+.header h1 {
+    font-size: 2em;
+    margin: auto;
+}
