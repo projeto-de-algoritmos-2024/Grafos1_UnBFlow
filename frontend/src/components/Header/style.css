@@ -1,6 +1,7 @@
 .header {
     display: flex;
     flex-flow: column;
+    height: 7vh;
     width: 100%;    
     color: white;
     align-items: center;
