@@ -1,7 +1,10 @@
 import React from 'react';
 import Header from './components/Header';
 import SearchArea from './components/SearchArea';
+import GraphCanvas from './components/GraphCanvas';
 import './App.css';
+
+
 
 function App() {
   return (
@@ -14,8 +17,13 @@ function App() {
         <div className='searchContainer'>
           <SearchArea />
         </div>
+
+        <div className='graphContainer'>
+          <GraphCanvas />
+        </div>
         
       </div>
+
 
     </div>
   );
