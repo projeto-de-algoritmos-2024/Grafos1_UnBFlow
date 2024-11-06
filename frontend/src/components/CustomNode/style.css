@@ -1,0 +1,21 @@
+.customNode {
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #b3b3b3;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.customNode strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.customNode p {
+    margin: 0;
+    color: #555555
+}

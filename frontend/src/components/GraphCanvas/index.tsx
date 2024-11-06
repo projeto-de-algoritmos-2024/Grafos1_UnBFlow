@@ -6,16 +6,21 @@ import {
     useEdgesState,
     addEdge,
 } from '@xyflow/react';
+import CustomNode from '../CustomNode';
 
 import '@xyflow/react/dist/style.css';
 import './style.css';
 
 const initalNodes = [
-    { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },   
-    { id: '2', position: { x: 100, y: 100 }, data: { label: '2' } },
+    { id: '1', position: { x: 10, y: 10 }, data: { code: 'MAT101', name: 'Matemática Básica Aplicada a Engenharia de Software' }, type: 'custom' },   
+    { id: '2', position: { x: 100, y: 100 }, data: { code: 'FIS201', name: 'Física Geral' }, type: 'custom'},
 ];
 
 const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
+
+const nodeTypes = {
+    custom: CustomNode,
+};
 
 function GraphCanvas() {
     const [nodes, setNodes, onNodesChanges] = useNodesState(initalNodes);
@@ -35,6 +40,7 @@ function GraphCanvas() {
                 onNodesChange={onNodesChanges}
                 onEdgesChange={onEdgesChanges}
                 onConnect={onConnect}
+                nodeTypes={nodeTypes}
             >
                 <Controls />
             </ReactFlow>
