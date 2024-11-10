@@ -1,6 +1,6 @@
 .searchArea {
-    background-color: gray;
-    height: 100vh;
+    background-color: white;
+    height: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
