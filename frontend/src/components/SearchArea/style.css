@@ -2,4 +2,12 @@
     background-color: gray;
     height: 100vh;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.searchArea > span {
+    margin-top: auto;
+    color: rgb(0, 0, 0, 0.5);
+    font-size: 0.75rem;
 }
