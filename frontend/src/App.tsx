@@ -1,14 +1,11 @@
-import React from 'react';
 import Header from './components/Header';
 import SearchArea from './components/SearchArea';
 import GraphCanvas from './components/GraphCanvas';
 import './App.css';
 
-
-
 function App() {
+  document.title = 'UnBFlow'
   return (
-    document.title = "ClassFlow",
     <div className="App">
       <Header />
 
@@ -23,7 +20,6 @@ function App() {
         </div>
         
       </div>
-
 
     </div>
   );
