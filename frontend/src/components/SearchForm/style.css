@@ -1,7 +1,6 @@
 .searchForm {
     display: flex;
     flex-direction: column;
-    background-color: #d1d1d1;
     padding: 20px;
     margin: 10px;
     border-radius: 8px;
@@ -20,12 +19,16 @@
 
 .searchForm input[type="text"] {
     flex: 1;
-    padding: 5px;
+    padding: 0.25rem 0.5rem;
     border-radius: 4px;
     border: 1px solid #ccc;
     margin-left: 10px;
+    background-color: #F9FAFB;
 }
 
+.searchForm input[type="text"]:disabled {
+    background-color: #E3E4E5;
+}
 
 .searchForm input[type="checkbox"] {
     width: 22px;

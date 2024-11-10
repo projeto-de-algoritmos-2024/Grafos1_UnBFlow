@@ -1,13 +1,18 @@
 .searchArea {
-    background-color: white;
     height: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 0 1rem rgb(0, 0, 0, 0.15);
 }
 
 .searchArea > span {
     margin-top: auto;
     color: rgb(0, 0, 0, 0.5);
     font-size: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.searchArea > span > a {
+    color: #c91435;
 }

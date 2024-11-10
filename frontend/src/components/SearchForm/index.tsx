@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./style.css";
 
 type SearchFormProps = {
@@ -46,7 +46,7 @@ function SearchForm( { onSearch }: SearchFormProps ) {
                     disabled={!useParam2}
                 />
             </label>
-            <button onClick={handleSearch}>Buscar</button>
+            <button type="button" onClick={handleSearch}>Buscar</button>
         </div>
     );
 }   

@@ -20,7 +20,9 @@ function SearchArea() {
         <div className="searchArea">
             <SearchForm onSearch={handleSearch} />
             <SearchResults results={results} />
-            <span>Copyleft 🄯  2024 | Feito com ♥️ por Renan V. Guedes e João V. Farias</span>
+            <span>
+                Copyleft 🄯  2024 | Feito com ♥️  por <a href="https://github.com/R-enanVieira">Renan V. Guedes</a> e <a href="https://github.com/beyondmagic">João V. Farias</a>
+            </span>
         </div>
     );
 }
