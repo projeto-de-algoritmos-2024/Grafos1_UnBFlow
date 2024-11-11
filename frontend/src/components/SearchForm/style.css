@@ -12,7 +12,7 @@
     margin-bottom: 10px;
 }
 
-.searchForm label {
+.searchForm div {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
@@ -20,6 +20,7 @@
 
 .searchForm input[type="text"] {
     flex: 1;
+    width: 100%;
     padding: 5px;
     border-radius: 4px;
     border: 1px solid #ccc;
