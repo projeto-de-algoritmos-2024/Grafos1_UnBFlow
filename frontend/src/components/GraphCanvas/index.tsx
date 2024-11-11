@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
     ReactFlow,
     Controls,
     useNodesState,
     useEdgesState,
     addEdge,
+    useReactFlow,
 } from '@xyflow/react';
 import CustomNode from '../CustomNode';
 
@@ -25,12 +26,17 @@ const nodeTypes = {
 function GraphCanvas() {
     const [nodes, setNodes, onNodesChanges] = useNodesState(initalNodes);
     const [edges, setEdges, onEdgesChanges] = useEdgesState(initialEdges);
+    const { fitView } = useReactFlow();
 
     const onConnect = useCallback(
         (params : any) => setEdges((eds) => 
         addEdge(params, eds)),
         [setEdges],
     );
+
+    useEffect(() => {
+        fitView({padding: 0.2});
+    }, [fitView, nodes]);
 
     return (
         <div className='graph'>
