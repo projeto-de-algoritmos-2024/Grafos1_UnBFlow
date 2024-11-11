@@ -10,7 +10,7 @@ const goal = "FGA0003"
 const exists = new Set()
 
 /**
- * @type {Map<string, Array<{code: string, name: string}>>}
+ * @type {Map<string, Array<string>>}
  */
 const classes = new Map()
 
@@ -35,23 +35,21 @@ if (!map.has(goal))
 
 const goal_info = map.get(goal)
 exists.add(goal_info.code)
-classes.set(goal, goal_info.pre)
+classes.set(goal, goal_info.pre.map(item => item.code))
 
 /**
- * @type Array<{code: string, name: string}>
+ * @type Array<string>
  */
-let queue = [].concat(map.get(goal).pre)
+let queue = [].concat(map.get(goal).pre.map(item => item.code))
 while (queue.length)
 {
-	const pre = /** @type {{code: string, name: string}} */ (queue.shift())
-	if (exists.has(pre.code))
+	const pre = /** @type string */ (queue.shift())
+	if (exists.has(pre))
 		continue
 
-	exists.add(pre.code)
+	exists.add(pre)
 
-	const course = map.get(pre.code)
-
-	console.log(`couse -> ${course}`)
+	const course = map.get(pre)
 
 	// For classe that are not being offered for the students.
 	// In this case, linked to the class that is being offered!
@@ -65,7 +63,7 @@ while (queue.length)
 
 	// Class that is being offered.
 	if (course)
-		classes.set(pre.code, course.pre)
+		classes.set(pre, course)
 
 	// Is not being offered, and there is no equivalent.
 	else
@@ -88,7 +86,7 @@ for (const [code, pre] of classes)
 
 	for (const pre_class of pre)
 	{
-		const pre_code = pre_class.code
+		const pre_code = pre_class
 		if (out.has(pre_code))
 			out.set(pre_code, /** @type number */ (out.get(pre_code)) + 1)
 		else
@@ -117,8 +115,9 @@ for (const [code, value] of out)
 	if (!value)
 		pq.push(code)
 
+
 /**
- * @type {Set<string>}
+ * @type {Set<{from: string, to: string}>}
  */
 const rev = new Set([])
 
@@ -126,17 +125,15 @@ while (pq.size())
 {
 	const code = /** @type string */ (pq.pop())
 
-	rev.add(code)
-
 	// Class is not available.
 	if (!classes.has(code))
 		continue
 
-	for (const pre of /** @type Array<{code: string, name: string}> */ (classes.get(code)))
+	for (const pre of /** @type Array<string> */ (classes.get(code)))
 	{
-		--out[pre.code]
-		if (!out[pre.code])
-			pq.push(pre.code)
+		--out[pre]
+		if (!out[pre])
+			pq.push(pre)
 	}
 }
 
@@ -146,10 +143,3 @@ for (const course of rev)
 	ans.unshift(course)
 
 console.log(ans)
-
-//queue.push(1, 10);
-//queue.push(2, 5);
-//console.log(queue.pop())  // 2
-//queue.peek();  // 1
-//queue.clear();
-//queue.pop();  // undefined
