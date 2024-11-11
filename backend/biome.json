@@ -1,0 +1,14 @@
+{
+  "$schema": "/home/dream/.config/bun/install/cache/@biomejs/biome/1.5.3/configuration_schema.json",
+  "linter": {
+    "enabled": true,
+    "rules": {
+		"suspicious": {
+			"noExplicitAny": "off"
+		},
+		"style": {
+			"noNonNullAssertion": "off"
+		}
+    }
+  }
+}

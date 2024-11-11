@@ -1,53 +1,46 @@
-const top = 0;
+const top = 0
 
-/**
- * @param {number} i
- */
-function parent (i) {
+function parent (i: number) {
 	return ((i + 1) >>> 1) - 1
 }
 
-/**
- * @param {number} i
- */
-function left (i) {
+function left (i: number) {
 	return (i << 1) + 1
 }
 
-/**
- * @param {number} i
- */
-function right (i) {
+function right (i: number) {
 	return (i + 1) << 1
 }
 
-class PriorityQueue {
-	/**
-	 * @param {(a: any, b: any) => boolean} [comparator=(a, b) => a > b]
-	 */
-	constructor(comparator = (a, b) => a > b) {
-		this._heap = [];
-		this._comparator = comparator;
+export class PriorityQueue {
+
+	_heap: Array<any>
+	_comparator: (arg1: any, arg2: any) => boolean
+
+	constructor(comparator = (a: any, b: any) => a > b) {
+		this._heap = []
+		this._comparator = comparator
 	}
+
 	size() {
-		return this._heap.length;
+		return this._heap.length
 	}
-	isEmpty() {
-		return this.size() === 0;
+
+	empty() {
+		return this.size() === 0
 	}
+
 	peek() {
 		return this._heap[top];
 	}
 
-	/**
-	 * @param {...any} values
-	 */
-	push(...values) {
+	push(...values: Array<any>) {
 		for (const value of values) {
 			this._heap.push(value)
 			this._siftUp()
 		}
-		return this.size();
+
+		return this.size()
 	}
 
 	pop() {
@@ -56,34 +49,24 @@ class PriorityQueue {
 		if (bottom > top) {
 			this._swap(top, bottom);
 		}
+
 		this._heap.pop();
 		this._siftDown();
 		return poppedValue;
 	}
 
-	/**
-	 * @param {any} value
-	 */
-	replace(value) {
+	replace(value: any) {
 		const replacedValue = this.peek();
 		this._heap[top] = value;
 		this._siftDown();
 		return replacedValue;
 	}
 
-	/**
-	 * @param {number} i
-	 * @param {number} j
-	 */
-	_greater(i, j) {
+	_greater(i: number, j: number) {
 		return this._comparator(this._heap[i], this._heap[j]);
 	}
 
-	/**
-	 * @param {number} i
-	 * @param {number} j
-	 */
-	_swap(i, j) {
+	_swap(i: number, j: number) {
 		[this._heap[i], this._heap[j]] = [this._heap[j], this._heap[i]];
 	}
 
@@ -107,5 +90,3 @@ class PriorityQueue {
 		}
 	}
 }
-
-module.exports = PriorityQueue
