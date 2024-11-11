@@ -1,34 +1,42 @@
-[
-  {
-    "from": "FGA0145",
-    "to": "FGA0145"
-  },
-  {
-    "from": "FGA0145",
-    "to": "FGA0146"
-  },
-  {
-    "from": "FGA0146",
-    "to": "FGA0146"
-  },
-  {
-    "from": "FGA0147",
-    "to": "FGA0146"
-  },
-  {
-    "from": "FGA0146",
-    "to": "FGA0147"
-  },
-  {
-    "from": "FGA0147",
-    "to": "FGA0147"
-  },
-  {
-    "from": "FGA0147",
-    "to": "FGA0003"
-  },
-  {
-    "from": "FGA0003",
-    "to": "FGA0003"
-  }
-]
+{
+  "classes": [
+    "FGA0003",
+    "FGA0147",
+    "FGA0146",
+    "FGA0145"
+  ],
+  "edges": [
+    {
+      "from": "FGA0145",
+      "to": "FGA0145"
+    },
+    {
+      "from": "FGA0145",
+      "to": "FGA0146"
+    },
+    {
+      "from": "FGA0146",
+      "to": "FGA0146"
+    },
+    {
+      "from": "FGA0147",
+      "to": "FGA0146"
+    },
+    {
+      "from": "FGA0146",
+      "to": "FGA0147"
+    },
+    {
+      "from": "FGA0147",
+      "to": "FGA0147"
+    },
+    {
+      "from": "FGA0147",
+      "to": "FGA0003"
+    },
+    {
+      "from": "FGA0003",
+      "to": "FGA0003"
+    }
+  ]
+}
