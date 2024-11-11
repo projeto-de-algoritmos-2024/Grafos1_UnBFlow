@@ -1,5 +1,7 @@
-import { PriorityQueue } from "./priority_queue"
-import data from "./disciplinas.json"
+const PriorityQueue = require("./priority_queue.js")
+// import { PriorityQueue } from "./priority_queue"
+const data = require("./disciplinas.json")
+//import data from "./disciplinas.json"
 
 const goal = "FGA0003"
 
@@ -63,16 +65,18 @@ while (queue.length)
 
 	// Class that is being offered.
 	if (course)
-		classes.set(pre, course)
+		classes.set(pre, course.pre.map(item => item.code))
 
 	// Is not being offered, and there is no equivalent.
 	else
 		continue
 
-	queue = queue.concat(course.pre)
+	queue = queue.concat(course.pre.map(item => item.code))
 }
 
+console.log("classes")
 console.log(classes)
+console.log("\n")
 
 /**
  * @type {Map<string, number>}}
@@ -94,7 +98,9 @@ for (const [code, pre] of classes)
 	}
 }
 
+console.log("out")
 console.log(out)
+console.log("\n")
 
 /*
  * Calculate topological sorting of the graph.
@@ -102,19 +108,25 @@ console.log(out)
 
 
 /**
- * @param {string} a
- * @param {string} b
+ * @param {{from: string, to: string}} a
+ * @param {{from: string, to: string}} b
  */
 function compare (a, b) {
-	return a.localeCompare(b) > 0
+	return a.from.localeCompare(b.from) > 0
 }
 
 const pq = new PriorityQueue(compare)
 
 for (const [code, value] of out)
 	if (!value)
-		pq.push(code)
+		pq.push({
+			from: code,
+			to: code
+		})
 
+//console.log("PriorityQueue")
+//console.log(pq._heap)
+//console.log()
 
 /**
  * @type {Set<{from: string, to: string}>}
@@ -123,17 +135,33 @@ const rev = new Set([])
 
 while (pq.size())
 {
-	const code = /** @type string */ (pq.pop())
+	const item = /** @type {{from: string, to: string}} */ (pq.pop())
 
-	// Class is not available.
-	if (!classes.has(code))
+	let has_item = false
+	for (const k of rev)
+		if (k.from === item.from && k.to === item.to)
+		{
+			has_item = true
+			break
+		}
+
+	if (has_item)
 		continue
 
-	for (const pre of /** @type Array<string> */ (classes.get(code)))
+	rev.add(item)
+
+	// Class is not available.
+	if (!classes.has(item.from))
+		continue
+
+	for (const pre of /** @type Array<string> */ (classes.get(item.from)))
 	{
 		--out[pre]
 		if (!out[pre])
-			pq.push(pre)
+			pq.push({
+				from: pre,
+				to: item.from,
+			})
 	}
 }
 

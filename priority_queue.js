@@ -21,7 +21,7 @@ function right (i) {
 	return (i + 1) << 1
 }
 
-export class PriorityQueue {
+class PriorityQueue {
 	/**
 	 * @param {(a: any, b: any) => boolean} [comparator=(a, b) => a > b]
 	 */
@@ -107,3 +107,5 @@ export class PriorityQueue {
 		}
 	}
 }
+
+module.exports = PriorityQueue
