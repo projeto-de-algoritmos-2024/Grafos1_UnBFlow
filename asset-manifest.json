@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Grafos1_UnBFlow/static/css/main.291b23b6.css",
+    "main.js": "/Grafos1_UnBFlow/static/js/main.6a2ae513.js",
+    "static/js/453.b8bd91a1.chunk.js": "/Grafos1_UnBFlow/static/js/453.b8bd91a1.chunk.js",
+    "index.html": "/Grafos1_UnBFlow/index.html",
+    "main.291b23b6.css.map": "/Grafos1_UnBFlow/static/css/main.291b23b6.css.map",
+    "main.6a2ae513.js.map": "/Grafos1_UnBFlow/static/js/main.6a2ae513.js.map",
+    "453.b8bd91a1.chunk.js.map": "/Grafos1_UnBFlow/static/js/453.b8bd91a1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.291b23b6.css",
+    "static/js/main.6a2ae513.js"
+  ]
+}
